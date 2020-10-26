@@ -1,5 +1,4 @@
 #import libraries
-
 import numpy as np
 from sklearn import preprocessing, neighbors
 import pandas as pd
@@ -16,19 +15,19 @@ import numpy as np
 import matplotlib.pyplot as plt  # To visualize
 import pandas as pd  # To read data
 from sklearn.linear_model import LinearRegression
-
 # manually impute missing values with numpy
 from pandas import read_csv
 from numpy import nan
 
 
-
+#Loading train and test datasets
 df1 = pd.read_csv('train.csv')
 df2 = pd.read_csv('test.csv')
 
+#Converting to dataframe
 df1 = pd.DataFrame(df1)
 df2 = pd.DataFrame(df2)
-#df1
+#Checking df1
 print(df1)
 print(df1.head())
 print(df1.tail())
@@ -37,17 +36,14 @@ print(type(df1))
 print(df1.shape)
 print(df1.columns)
 print(df1.describe())
-#print(df1.corr())
-#print(df1.boxplot())
 print(df1.duplicated())
 print(df1.drop_duplicates())
 print(df1.isnull())
 print(df1.info())
 print(df1.isnull().sum()) #Missing values: There are: 802(Item_Weight, float64) and 1450(Store_Size, object)                      
 print(df1['Item_Store_Returns'].value_counts())
-print(df1.columns)
 
-#df2
+#Checking df2
 df2 = pd.DataFrame(df2)
 print(df2)
 print(df2.head())
@@ -57,16 +53,11 @@ print(type(df2))
 print(df2.shape)
 print(df2.columns)
 print(df2.describe())
-#print(df2.corr())
-#print(df2.boxplot())
 print(df2.duplicated())
 print(df2.drop_duplicates())
 print(df2.isnull())
 print(df2.info())
-print(df2.isnull().sum()) #Missing values: There are: 802(Item_Weight, float64) and 1450(Store_Size, object)                      
-print(df2.columns)
-
-
+print(df2.isnull().sum()) #Missing values: There are: 802(Item_Weight, float64) and 1450(Store_Size, object)                     
 
 #Treating Missing values: Item_Weight and Store_Size
 #For the float64 variable: Item_Weight
@@ -107,6 +98,7 @@ print(df2['Store_Size'].isnull().sum().sum()) #It is confirmed that there is no 
 #Building Model (Regression Model) is the next task
 print(df1.columns)
 print(df2.columns)
+
 #Selecting all rows, containing the listed columns
 X_train = df1.iloc[:, 3:10] #NOTE: use .iloc for pandas, if it is numpy, there will be no need to add .iloc
 y_train = df1['Item_Store_Returns']
@@ -118,6 +110,7 @@ print(X_test)
 #Combining train and test data sets
 all_data = pd.concat([df1, df2], axis = 0, ignore_index = True, sort = True)
 print(all_data)
+
 #Exporting the cleaned dataset to csv(comma separeted value)
 all_data.to_csv('all_data.csv')
 from sklearn.linear_model import LinearRegression

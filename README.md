@@ -6,4 +6,3 @@ which drive returns and have better insight on how to proceed with the plan of e
 Given (Train and Test data)
 Target variable: Item_Store_Returns
 Predictor variables: Item_Type, Store_Location_Type, Store_Type,
-
